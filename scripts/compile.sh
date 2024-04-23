@@ -14,7 +14,7 @@ INSTALL_DIRECTORY="${BUILD_DIRECTORY}/install"
 TESTING=false
 
 # Handle command line arguments
-while getopts 'b:th' opt; do
+while getopts 'b:thc' opt; do
     case "$opt" in
         b)
             BUILD_TYPE="$OPTARG"
@@ -28,6 +28,10 @@ while getopts 'b:th' opt; do
             echo "========================================================================================="
             exit 1
             ;;
+        c)
+            echo "Cleaning build dir first.."
+            CLEAN=true
+            ;;
         :)
             echo -e "Option flag required when passing in an argument. Stop."
             exit 1
@@ -36,6 +40,12 @@ while getopts 'b:th' opt; do
 done
 
 shift "$(($OPTIND -1))"
+
+if [ "$CLEAN" = true ]; then
+
+    rm -rf "$PWD/../build"
+
+fi
 
 echo "====== BUILD DIALOGUE ====================================================================================="
 echo "      !!! Building in $BUILD_DIRECTORY !!!                                                                 "

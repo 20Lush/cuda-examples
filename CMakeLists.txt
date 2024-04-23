@@ -26,11 +26,15 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/cmake/")
 add_compile_options(-Wall -Wextra -Wformat-overflow=0)
 
 # In case we want to do some code coverage calculation later, lets put a coverage flag when we compile for debug
+# Also set CUDAgdb flags to allow breakpoints
 if(CMAKE_BUILD_TYPE STREQUAL "DEBUG")
     set(CMAKE_CXX_FLAGS "--coverage")
     set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE ON)
     add_definitions(-DDEBUG)
+    set(CMAKE_CUDA_FLAGS ${CMAKE_CUDA_FLAGS} "-g -G")
+    set(CUDA_NVCC_FLAGS "-g -G")
 endif()
+
 
 # If testing is enabled at the command line lets do the CMake part of that
 if(${ENABLE_TESTING})
