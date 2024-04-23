@@ -1,4 +1,4 @@
-#include "kernel.hpp"
+#include "VecAdd.hpp"
 
 #include <thrust/device_vector.h>
 #include <stdio.h>

@@ -1,29 +1,25 @@
 cmake_minimum_required(VERSION 3.22)
 
 # Lets initialize the project for our actual executable
-project(CUDA_EXE_NAME
+project(CUDA_Examples
     VERSION ${PROJECT_VERSION}
-    DESCRIPTION "CUDA EXECUTABLE Project"
+    DESCRIPTION "CUDA Example Project"
     LANGUAGES CUDA CXX
 )
 message(STATUS "Project name: " ${PROJECT_NAME})
 
-# Put some versioning info into our runtime environment
-configure_file(
-    "${PROJECT_SOURCE_DIR}/include/version.hpp.in"
-    "${PROJECT_SOURCE_DIR}/include/version.hpp"
-)
-
 # Define what source files we actually are going to compile
 set(SOURCE_FILES
-    src/kernel.cu
+    src/MatMultiply.cu
+    src/VecAdd.cu
     src/main.cpp
 )
 
 # Define what header files are going to be exposed(only put interfaces!)
 set(PUBLIC_INCLUDE_FILES
-    include/main.hpp
-    include/kernel.hpp
+    include/MatMultiply.hpp
+    include/VecAdd.hpp
+    include/main.hpp 
 )
 
 # Do a CMake add_executable to mark it for build

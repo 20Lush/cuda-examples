@@ -1,5 +1,5 @@
 #include "main.hpp"
-#include "kernel.hpp"
+#include "VecAdd.hpp"
 
 #include <cuda_runtime.h>
 
